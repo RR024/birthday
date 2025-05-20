@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff0f5;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+            animation: fadeIn 2.5s ease-in-out;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+        
+        .scroll-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f0f;
+            animation: fall 10s linear infinite;
+        }
+        
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #ff6b93;
+            position: relative;
+            display: inline-block;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            bottom: -10px;
+            left: 25%;
+            background: linear-gradient(to right, transparent, #ff6b93, transparent);
+        }
+        
+        .wishes {
+            background-color: #fafaff;
+        }
+        
+        .wish-form {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            resize: none;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+        
+        .gift-btn {
+            padding: 15px 30px;
+            background-color: #ff6b93;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .gift-btn:hover {
+            background-color: #ff4f81;
+            transform: scale(1.05);
+        }
+        
+        .surprise {
+            background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            background-color: #ff6b93;
+            border-radius: 10px;
+            position: relative;
+            margin: 0 auto 40px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .gift-box:before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 200px;
+            background-color: #ff4f81;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .gift-box:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 40px;
+            background-color: #ff4f81;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .gift-message {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            display: none;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* Timeline Section */
+        .timeline {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .timeline-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #ff6b93;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+            width: 50%;
+            padding: 0 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #ff6b93;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-date {
+            color: #ff6b93;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Photo Gallery */
+        .gallery {
+            background-color: #fff;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 107, 147, 0.8);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .modal-content {
+            margin: 5% auto;
+            display: block;
+            max-width: 80%;
+            max-height: 80%;
+            width: auto;
+            height: auto;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #ff6b93;
+        }
+        
+        /* Quote Generator */
+        .quote-section {
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            color: #333;
+        }
+        
+        .quote-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .quote-author {
+            font-weight: bold;
+            color: #ff6b93;
+            margin-bottom: 30px;
+        }
+        
+        .new-quote-btn {
+            padding: 12px 25px;
+            background-color: #ff6b93;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .new-quote-btn:hover {
+            background-color: #ff4f81;
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        .nav-dots {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 2px solid #ff6b93;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background-color: #ff6b93;
+            transform: scale(1.3);
+        }
+        
+        /* Birthday cake animation */
+        .cake-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+        }
+        
+        .cake {
+            position: relative;
+            width: 180px;
+            height: 120px;
+            background-color: #f9c8d6;
+            border-radius: 10px 10px 0 0;
+            margin: 0 auto;
+        }
+        
+        .cake-layers {
+            position: absolute;
+            width: 180px;
+            height: 40px;
+            background-color: #ff6b93;
+            bottom: 0;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .candle {
+            position: absolute;
+            width: 8px;
+            height: 30px;
+            background-color: #fdfdfd;
+            border-radius: 4px;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .flame {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            background-color: #ffac33;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            bottom: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 1s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+            25% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+            50% { transform: translateX(-50%) scale(0.9); opacity: 0.8; }
+            75% { transform: translateX(-50%) scale(1.05); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1); opacity: 1; }
+        }
+        
+        /* Interactive greeting card */
+        .greeting-card {
+            position: relative;
+            width: 450px;
+            height: 400px;
+            margin: 40px auto;
+            perspective: 1500px;
+            cursor: pointer;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 1s ease;
+            border-radius: 10px;
+            overflow: auto;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .card-back {
+            background-color: white;
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .greeting-card:hover .card-front {
+            transform: rotateY(180deg);
+        }
+        
+        .greeting-card:hover .card-back {
+            transform: rotateY(0);
+        }
+        
+        /* Birthday Wish Tree */
+        .wish-tree-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .tree {
+            width: 220px;
+            height: 300px;
+            background-color: #8e6d3e;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 50% / 20% 20% 5% 5%;
+        }
+        
+        .tree::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background-color: #8e6d3e;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+        }
+        
+        .wish-leaf {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            background-color: #ff6b93;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            animation: sway 3s ease-in-out infinite alternate;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .wish-leaf:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        
+        .wish-leaf:nth-child(1) { top: 20px; left: -70px; animation-delay: 0.2s; }
+        .wish-leaf:nth-child(2) { top: 70px; right: -70px; animation-delay: 0.6s; }
+        .wish-leaf:nth-child(3) { top: 130px; left: -70px; animation-delay: 0.4s; }
+        .wish-leaf:nth-child(4) { top: 180px; right: -70px; animation-delay: 0.8s; }
+        .wish-leaf:nth-child(5) { top: 230px; left: -70px; animation-delay: 0.1s; }
+        
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        
+        /* Fireworks */
+        .firework {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: #ff6b93;
+            animation: explode 1s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(30); opacity: 0; }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        
+        .loading-spinner {
+            width: 80px;
+            height: 80px;
+            border: 8px solid rgba(255, 107, 147, 0.3);
+            border-top: 8px solid #ff6b93;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.2rem; }
+            .gift-box { width: 150px; height: 150px; }
+            .gift-box:before { width: 30px; height: 150px; }
+            .gift-box:after { width: 150px; height: 30px; }
+            
+            .timeline-container::before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                left: 30px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 30px;
+            }
+            
+            .nav-dots {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots">
+        <div class="nav-dot active" data-section="home"></div>
+        <div class="nav-dot" data-section="timeline"></div>
+        <div class="nav-dot" data-section="gallery"></div>
+        <div class="nav-dot" data-section="quote"></div>
+        <div class="nav-dot" data-section="wishes"></div>
+        <div class="nav-dot" data-section="surprise"></div>
+    </div>
+
+    <header id="home">
+        <h1>Happy Birthday!</h1>
+        <p class="subtitle">Celebrating Your Special Day - July 14th</p>
+        <div class="countdown" id="countdown"></div>
+        
+        <!-- Birthday Cake Animation -->
+        <div class="cake-container">
+            <div class="cake">
+                <div class="cake-layers"></div>
+            </div>
+            <div class="candle"></div>
+            <div class="flame" id="flame"></div>
+        </div>
+        
+        <p class="scroll-hint">Scroll down to explore your gift</p>
+    </header>
+    
+    <!-- New Section: Timeline -->
+    <section class="timeline" id="timeline">
+        <div class="container">
+            <h2>Our Friendship Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">How We Met</div>
+                        <p>Remember when we first met at Bus Bay Who would have thought that would be the start of such an amazing friendship!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">First Adventure</div>
+                        <p>Our first trip together to VGP. Still can't believe we are still firends!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">That One Time</div>
+                        <p>Remember when we shared others stories I've never laughed so hard in my life!</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Supporting Each Other</div>
+                        <p>When you helped me in everytime   - your support meant everything to me.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Today</div>
+                        <p>Celebrating another year of your amazing life! Here's to many more adventures together!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Photo Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="../wish-2/image-2.jpg" alt="Gallery Image 1">
+                    <div class="gallery-caption">Our First Photo</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../wish-2/image-1.jpg " alt="Gallery Image 2">
+                    <div class="gallery-caption">Our First Trip</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../wish-2/img-3.jpg" alt="Gallery Image 3">
+                    <div class="gallery-caption">Deepavali Celebrations</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../wish-2/img-4.jpg" alt="Gallery Image 4">
+                    <div class="gallery-caption">Shoppings</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="../wish-2/img-5.jpg" alt="Gallery Image 5">
+                    <div class="gallery-caption">Women's Day</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/api/placeholder/300/200" alt="Gallery Image 6">
+                    <div class="gallery-caption">Holiday Celebration</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal for Gallery -->
+    <div id="galleryModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+    
+    <!-- Quote Generator Section -->
+    <section class="quote-section" id="quote">
+        <div class="container">
+            <h2>Birthday Quotes For You</h2>
+            <div class="quote-container">
+                <p class="quote-text" id="quoteText">"On your birthday, I wish you abundant happiness and love. May all your dreams turn into reality and may lady luck visit your home today. Happy birthday to one of the sweetest people I've ever known."</p>
+                <p class="quote-author" id="quoteAuthor">Your Friend</p>
+                <button class="new-quote-btn" id="newQuoteBtn">New Quote</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Wish Section with Interactive Greeting Card -->
+    <section class="wishes" id="wishes">
+        <div class="container">
+            <h2>Birthday Wishes</h2>
+            
+            <!-- Interactive Greeting Card -->
+            <div class="greeting-card">
+                <div class="card-front">
+                    <p>Click to Open</p>
+                </div>
+                <div class="card-back">
+                    <h3>Happy Birthday!</h3>
+                <p>I want to wish you the happiest of birthdays! You deserve all the joy, love, and success in the world. May this year bring you endless opportunities, beautiful moments, and everything your heart desires.</p>
+                <p>Your friendship has been one of the greatest gifts in my life. You've been there through thick and thin, always ready with a smile, a kind word, or a shoulder to lean on. Your kindness, intelligence, and wonderful spirit inspire me every day.</p>
+                <p>On your special day, I hope you feel as special and amazing as you truly are. Let's celebrate many more birthdays together!</p>
+                <p>With all my love,</p>
+                <p><strong>RR</strong></p>
+                </div>
+            </div>
+            
+            <!-- Birthday Wish Tree -->
+            <div class="wish-tree-container">
+                <div class="tree">
+                    <div class="wish-leaf">Health and happiness</div>
+                    <div class="wish-leaf">Success in all you do</div>
+                    <div class="wish-leaf">Love and laughter</div>
+                    <div class="wish-leaf">Dreams come true</div>
+                    <div class="wish-leaf">Beautiful moments</div>
+                </div>
+            </div>
+            
+            <div class="wish-form">
+                <h3>Leave Your Birthday Wish</h3>
+                <textarea placeholder="Write your birthday wish here..." rows="5"></textarea>
+                <button class="gift-btn">Send Wish</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Surprise Gift Section -->
+    <section class="surprise" id="surprise">
+        <div class="container">
+            <h2>Your Birthday Surprise</h2>
+            <div class="gift-box" id="giftBox"></div>
+            <div class="gift-message" id="giftMessage">
+                <p>Your surprise gift is...!</p>
+                <p>Naan ye unaku oru periya gift uh than ithuku mela unaku ena gift venum...😂</p>
+                <p>I hope this makes your special day even more memorable.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Made with ❤️ for your special day | Happy Birthday 2025!</p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 1000);
+            }, 2000);
+        });
+        
+        // Countdown Timer
+        function updateCountdown() {
+            const birthdate = new Date('July 14, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const difference = birthdate - now;
+            
+            if (difference < 0) {
+                document.getElementById('countdown').innerHTML = "Happy Birthday!";
+                return;
+            }
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById('countdown').innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Confetti Animation
+        function createConfetti() {
+            const confettiCount = 100;
+            const container = document.querySelector('header');
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random position
+                confetti.style.left = Math.random() * 100 + '%';
+                
+                // Random delay
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Random color
+                const colors = ['#ff6b93', '#ffcd3c', '#35a7ff', '#5cdb95', '#ff5959'];
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                // Random rotation
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 10000);
+            }
+        }
+        
+        // Run confetti every few seconds
+        setInterval(createConfetti, 5000);
+        createConfetti();
+        
+        // Gift Box Animation
+        document.getElementById('giftBox').addEventListener('click', function() {
+            this.style.transform = 'scale(1.2)';
+            this.style.animation = 'none';
+            
+            // Show fireworks
+            for (let i = 0; i < 10; i++) {
+                setTimeout(function() {
+                    createFirework();
+                }, i * 300);
+            }
+            
+            // Show gift message
+            setTimeout(() => {
+                document.getElementById('giftMessage').style.display = 'block';
+                document.getElementById('giftBox').style.display = 'none';
+            }, 1000);
+        });
+        
+        // Create Firework
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            
+            // Random position
+            firework.style.left = Math.random() * 80 + 10 + '%';
+            firework.style.top = Math.random() * 80 + 10 + '%';
+            
+            // Random color
+            const colors = ['#ff6b93', '#ffcd3c', '#35a7ff', '#5cdb95', '#ff5959'];
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.querySelector('.surprise').appendChild(firework);
+            
+            // Remove firework after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+        
+        // Nav Dots
+        document.querySelectorAll('.nav-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const targetSection = this.getAttribute('data-section');
+                document.getElementById(targetSection).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        
+        // Update active dot on scroll
+        window.addEventListener('scroll', function() {
+            const sections = ['home', 'timeline', 'gallery', 'quote', 'wishes', 'surprise'];
+            let current = '';
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                const rect = element.getBoundingClientRect();
+                
+                if (rect.top <= 150 && rect.bottom >= 150) {
+                    current = section;
+                }
+            });
+            
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-section') === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+        
+        // Gallery Modal
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImg');
+        const closeBtn = document.querySelector('.close');
+        
+        galleryItems.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.src;
+            });
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Quote Generator
+        const quotes = [
+            {
+                text: "On your birthday, I wish you abundant happiness and love. May all your dreams turn into reality and may lady luck visit your home today. Happy birthday to one of the sweetest people I've ever known.",
+                author: "Your Friend"
+            },
+            {
+                text: "Count your life by smiles, not tears. Count your age by friends, not years. Happy birthday!",
+                author: "John Lennon"
+            },
+            {
+                text: "Today you are you! That is truer than true! There is no one alive who is you-er than you!",
+                author: "Dr. Seuss"
+            },
+            {
+                text: "The more you praise and celebrate your life, the more there is in life to celebrate.",
+                author: "Oprah Winfrey"
+            },
+            {
+                text: "A birthday is the anniversary of your birth. It's the time most of us reflect over the past year and what we hope for in the coming year.",
+                author: "Claudia T. Hudson"
+            }
+        ];
+        
+        document.getElementById('newQuoteBtn').addEventListener('click', function() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quoteText').textContent = `"${randomQuote.text}"`;
+            document.getElementById('quoteAuthor').textContent = randomQuote.author;
+        });
+        
+        // Wish Form Submission
+        document.querySelector('.wish-form .gift-btn').addEventListener('click', function() {
+            const wishText = document.querySelector('.wish-form textarea').value;
+            if (wishText.trim() !== '') {
+                alert('Thank you for your beautiful birthday wish!');
+                document.querySelector('.wish-form textarea').value = '';
+            } else {
+                alert('Please write a wish before sending.');
+            }
+        });
+        
+        // Interactive Wish Leaves
+        document.querySelectorAll('.wish-leaf').forEach(leaf => {
+            leaf.addEventListener('click', function() {
+                alert(`Birthday wish: ${this.textContent}`);
+            });
+        });
+        
+        // Blow out candle
+        document.getElementById('flame').addEventListener('click', function() {
+            this.style.opacity = '0';
+            setTimeout(() => {
+                alert('You made a wish! Hope it comes true!');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
